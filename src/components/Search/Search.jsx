@@ -1,25 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import Header from "../Header";
-import { Link, NavLink, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import ImageGallery from "../Image/ImageGallery";
 import SearchBar from "./SerachBar";
 import Buttons from "../Buttons/Buttons";
 import Spinner from "../Spinner";
 import { ImageSnapshotContext } from "../context";
-
-const API_KEY = "dcnjKxLacI8Tu4JbLBUMKtHWF-OpdMmw16RP1xf0frM";
+import { API_KEY } from "../../constants/API";
 
 function Search() {
-
-  
-  const { searchTerm, setSearchTerm, images, setImages, selectedImage, setSelectedImage, isLoading, setIsLoading } = useContext(ImageSnapshotContext)
+  const {
+    searchTerm,
+    setSearchTerm,
+    images,
+    setImages,
+    selectedImage,
+    setSelectedImage,
+    isLoading,
+    setIsLoading,
+  } = useContext(ImageSnapshotContext);
   const { id } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchRandomImages();
-  }, []);
 
   useEffect(() => {
     if (id) {
@@ -30,21 +32,7 @@ function Search() {
     }
   }, [id, images]);
 
-  const fetchRandomImages = async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        `https://api.unsplash.com/photos/random?count=100&client_id=${API_KEY}`
-      );
-      setImages(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleSearch = async (searchTerm) => {
-    console.log("11111");
     setSearchTerm(searchTerm);
     try {
       setIsLoading(true);
@@ -59,9 +47,9 @@ function Search() {
   };
 
   const handleCategoryClick = async (category) => {
-    console.log("11111");
     setSearchTerm(category);
     try {
+      console.log("55555");
       setIsLoading(true);
       const response = await axios.get(
         `https://api.unsplash.com/photos/random?query=${category}&count=20&client_id=${API_KEY}`
@@ -89,11 +77,13 @@ function Search() {
         </div>
       ) : selectedImage ? (
         <div className="selected-image-container">
-
           <Link to={`/search/*/${selectedImage.id}`}>
             {console.log(selectedImage.id)}
             <div className="d-flex justify-content-center">
-              <img className="selected-image" src={selectedImage.urls.regular} />
+              <img
+                className="selected-image"
+                src={selectedImage.urls.regular}
+              />
             </div>
           </Link>
         </div>

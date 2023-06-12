@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 function SearchSelectedImage() {
 
-  let { id, term } = useParams();
+  let { id } = useParams();
 
   return (
     <div className='text-white'>SearchSelectedImage : {id}</div>

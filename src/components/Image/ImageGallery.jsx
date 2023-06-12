@@ -1,19 +1,6 @@
-import React, { useState , useContext} from 'react';
-import { ImageSnapshotContext } from '../context';
+import React from "react";
 
-const ImageGallery = ({ images ,handleImageClick, handleSearch }) => {
-  // const { images } = useContext(ImageSnapshotContext);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // const handleInputChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   handleSearch(searchTerm);
-  // };
-
+const ImageGallery = ({ images, handleImageClick }) => {
   return (
     <div className="container p-3">
       <div className="image-container d-flex flex-wrap justify-content-center">

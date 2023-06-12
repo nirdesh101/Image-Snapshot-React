@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { NavLink, Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const SearchBar = ({ handleSearch }) => {
   const navigate = useNavigate();
   const { term } = useParams();
 
   const [searchTerm, setSearchTerm] = useState(term || "");
-
-  console.log(searchTerm);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -38,7 +36,6 @@ const SearchBar = ({ handleSearch }) => {
           </button>
         </div>
       </form>
-      
     </>
   );
 };
